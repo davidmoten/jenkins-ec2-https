@@ -37,6 +37,7 @@ vi setup.sh
 ```
 Now run setup:
 ```bash
+chmod +x setup.sh
 ./setup.sh
 ```
 Now go to https://your_instance in the browser and paste in the last line output by the `setup.sh` script into the administration password in the browser. If the browser times out go to the same url again (make sure it's https). That's it!
