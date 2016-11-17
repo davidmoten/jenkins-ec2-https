@@ -42,6 +42,8 @@ Listen 443
   ProxyPassReverse / http://localhost:8080/
   ProxyPreserveHost on
   AllowEncodedSlashes NoDecode
+  RequestHeader set X-Forwarded-Proto "https"
+  RequestHeader set X-Forwarded-Port "443"
 
   LogFormat "%h (%{X-Forwarded-For}i) %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""
   ErrorLog /var/log/apache2/ssl-error_log
