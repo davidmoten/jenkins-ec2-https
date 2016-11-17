@@ -33,9 +33,6 @@ sudo mv /etc/apache2/sites-enabled/default-ssl.conf /etc/apache2/sites-enabled/d
 sudo cat <<EOF >/etc/apache2/sites-enabled/ssl.conf
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule proxy_module modules/mod_proxy.so
-#SSLVerifyClient require
-#SSLVerifyDepth 1
-#SSLCACertificateFile "/etc/pki/tls/certs/ca.crt"
 Listen 443
 <VirtualHost *:443>
   <Proxy "*">
@@ -46,9 +43,6 @@ Listen 443
   SSLEngine             on
   SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
   SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-  #SSLCipherSuite        EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
-  #SSLProtocol           All -SSLv2 -SSLv3
-  #SSLHonorCipherOrder   On
   
   # this option is mandatory to force apache to forward the client cert data to tomcat
   SSLOptions +ExportCertData
@@ -115,4 +109,7 @@ Now edit the location of the keys in `/etc/apache2/sites-enabled/ssl.conf` so th
   SSLCertificateFile	/etc/ssl/certs/my-cert.pem
   SSLCertificateKeyFile /etc/ssl/private/my-key.pem
 ```
-
+Restart apache2:
+```bash
+sudo service apache2 restart
+```
