@@ -27,5 +27,43 @@ sudo a2enmod proxy_http
 sudo a2enmod headers
 
 sudo mv /etc/apache2/sites-enabled/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf.bak
+
+#
+sudo cat <<EOT >/etc/apache2/sites-enabled/ssl.conf
+LoadModule ssl_module modules/mod_ssl.so
+LoadModule proxy_module modules/mod_proxy.so
+#SSLVerifyClient require
+#SSLVerifyDepth 1
+#SSLCACertificateFile "/etc/pki/tls/certs/ca.crt"
+Listen 443
+<VirtualHost *:443>
+  <Proxy "*">
+    Order deny,allow
+    Allow from all
+  </Proxy>
+  
+  SSLEngine             on
+  SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
+  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+  #SSLCipherSuite        EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+  #SSLProtocol           All -SSLv2 -SSLv3
+  #SSLHonorCipherOrder   On
+  
+  # this option is mandatory to force apache to forward the client cert data to tomcat
+  SSLOptions +ExportCertData
+  
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+  Header always set X-Frame-Options DENY
+  Header always set X-Content-Type-Options nosniff
+  
+  ProxyPass / http://localhost:8080/ retry=0
+  ProxyPassReverse / http://localhost:8080/
+  ProxyPreserveHost on
+  
+  LogFormat "%h (%{X-Forwarded-For}i) %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""
+  ErrorLog /var/log/apache2/ssl-error_log
+  TransferLog /var/log/apache2/ssl-access_log
+</VirtualHost>
+EOT
 ```
 
