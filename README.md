@@ -3,7 +3,7 @@ How to setup [Jenkins CI](https://jenkins.io/) on EC2 (Ubuntu 16.04 LTS) with ht
 
 This task took me three hours reading a lot of web pages and lots of trial and error. To make your life easier this is what you need to do to setup a Jenkins CI instance using your AWS account.
 
-I've tested this process and it took exactly *5 minutes* to get to the login screen of the jenkins https. Most of that time is waiting for the scripted installation of components on the AWS instance.
+I've tested this process and it took exactly *5 minutes* to get to the https login screen of the new jenkins instance. Most of that time is waiting for the scripted installation of components on the AWS instance.
 
 ##Create an EC2 instance
 * open AWS Console in browser
