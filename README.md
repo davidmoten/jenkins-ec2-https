@@ -7,6 +7,7 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 * open AWS Console in browser
 * go to EC2
 * Launch Instance - select Ubuntu 16.04 server image
+* Security group - allow inbound on SSH 22 and HTTPS 443
 * 8gb is fine for OS, add EBS volume if you need it (I used 100GB)
 * In EC2 go to instances, once instance running then select Connect
 * copy ssh command to terminal and connect
@@ -65,5 +66,11 @@ Listen 443
   TransferLog /var/log/apache2/ssl-access_log
 </VirtualHost>
 EOT
+
+## restart apache
+sudo service apache2 restart
+
+## print out jenkins password for initial admin login
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
