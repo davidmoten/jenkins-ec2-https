@@ -38,9 +38,10 @@ Listen 443
   Header always set X-Frame-Options DENY
   Header always set X-Content-Type-Options nosniff
 
-  ProxyPass / http://localhost:8080/ retry=0
+  ProxyPass / http://localhost:8080/ retry=0 nocanon
   ProxyPassReverse / http://localhost:8080/
   ProxyPreserveHost on
+  AllowEncodedSlashes NoDecode
 
   LogFormat "%h (%{X-Forwarded-For}i) %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""
   ErrorLog /var/log/apache2/ssl-error_log
