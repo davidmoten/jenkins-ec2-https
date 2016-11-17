@@ -22,7 +22,6 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * select **Review and launch**
 * select a key pair
 * select **Launch Instance**
-
 * In EC2 go to instances, once instance running then select instance and click *Connect*
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
