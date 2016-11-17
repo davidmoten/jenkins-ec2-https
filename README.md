@@ -3,6 +3,8 @@ How to setup Jenkins CI on EC2 (Ubuntu 16.04 LTS) with https access.
 
 This task took me three hours reading a lot of web pages and lots of trial and error. To make your life easier this is what you need to do to setup a Jenkins CI instance using your AWS account.
 
+I've tested this process and it took exactly *5 minutes* to get to the login screen of the jenkins https. Most of that time is waiting for the scripted installation of components on the AWS instance.
+
 ##Create an EC2 instance
 * open AWS Console in browser
 * go to EC2
@@ -35,7 +37,7 @@ Sources:
 chmod +x setup.sh
 ./setup.sh
 ```
-* Optionally edit `create-certs.sh` and update CA_PASSWORD and certificate fields (especially the CN field which is the hostname).
+* Edit `create-certs.sh` and update CA_PASSWORD and certificate fields (especially the CN field which is the hostname).
 * Then
 ```bash
 ./create-certs.sh
