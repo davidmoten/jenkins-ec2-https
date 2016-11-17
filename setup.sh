@@ -1,4 +1,12 @@
 #!/bin/bash
+HOSTNAME=ec2-52-63-456-123.ap-southeast-2.compute.amazonaws.com
+COUNTRY=AU
+STATE=Australian Capital Territory
+CITY=Canberra
+COMPANY=MyCompany
+DIVISON=IT
+EMAIL=somebody@gmail.com
+
 set -e 
 set -x
 
@@ -56,17 +64,16 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## The script above uses the default ssl certificates for apache2
 ## (and these will work but in the browser you will be warned about
-## the certificates being insecure). To make a self-signed certificate
+## the certificates being insecure). Now we make a self-signed certificate
 ## that at least matches the desired host name:
 
-tee create-certs.sh <<ZZZZ
 cd ~
 # we are now in /home/ubuntu
 
-#set this password for your needs
-CA_PASSWORD=blahblah
+#generate a password
+CA_PASSWORD=`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32}`
 
-# create server certificates (public and private)
+# create server certificates (public and p`)
 tee server-config <<EOF
 # OpenSSL configuration file.
 [ req ]
@@ -74,14 +81,21 @@ prompt = no
 distinguished_name          = req_distinguished_name
 
 [ req_distinguished_name ]
-C=AU
-ST=Australian Capital Territory
-L=Canberra
-CN=ec2-52-63-123-456.ap-southeast-2.compute.amazonaws.com
-O=Some Company
-OU=Some Division
-emailAddress=myemail@gmail.com
+C=TheCountry
+ST=TheState
+L=TheCity
+CN=TheHostname
+O=TheCompany
+OU=TheDivision
+emailAddress=TheEmail
 EOF
+sed -i -e "s/TheCountry/$COUNTRY/g" server-config
+sed -i -e "s/TheState/$STATE/g" server-config
+sed -i -e "s/TheCity/$CITY/g" server-config
+sed -i -e "s/TheHostname/$HOSTNAME/g" server-config
+sed -i -e "s/TheCompany/$COMPANY/g" server-config
+sed -i -e "s/TheDivision/$DIVISION/g" server-config
+sed -i -e "s/TheEmail/$EMAIL/g" server-config
 
 openssl genrsa -out key.pem  2048 # creates key.pem
 openssl req -sha256 -new -key key.pem -out csr.pem -config server-config
@@ -93,17 +107,8 @@ sudo cp cert.pem /etc/ssl/certs/my-cert.pem
 sudo cp key.pem /etc/ssl/private/my-key.pem
 
 sudo service apache2 restart
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-ZZZZ
-
-chmod +x create-certs.sh
 set +x
-echo '****************************************'
-echo '* Now you should edit create-certs.sh '
-echo '* to update the CA_PASSWORD and your   '
-echo '* certificate fields. Then run '
-echo '    ./create-certs.sh '
-echo '* the last line of output from that script'
-echo '* is the password to be entered first time '
-echo '* you go to the jenkins url in browser'
-echo '****************************************'
+echo CA password (you probably don't need it):
+echo $CA_PASSWORD
+echo initial administration password to enter into browser:
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
