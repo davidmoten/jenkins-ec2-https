@@ -79,6 +79,9 @@ The script above uses the default ssl certificates for apache2. To make a self-s
 sudo su - jenkins
 # we are now in /var/lib/jenkins
 
+#set this password for your needs
+CA_PASSWORD=blahblah
+
 # create server certificates (public and private)
 tee server-config <<EOF
 # OpenSSL configuration file.
@@ -96,7 +99,6 @@ OU=Some Division
 emailAddress=myemail@gmail.com
 EOF
 
-CA_PASSWORD=blahblah
 openssl genrsa -out key.pem  2048 # creates key.pem
 openssl req -sha256 -new -key key.pem -out csr.pem -config server-config
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem -passin "pass:$CA_PASSWORD"
