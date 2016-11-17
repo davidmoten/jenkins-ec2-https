@@ -1,15 +1,15 @@
 #!/bin/bash
-################################################################
+#################################################################
 ## Set the values in this section
-################################################################
-HOSTNAME=ec2-52-63-456-123.ap-southeast-2.compute.amazonaws.com
-COUNTRY=AU
-STATE=Australian Capital Territory
-CITY=Canberra
-COMPANY=MyCompany
-DIVISON=IT
-EMAIL=somebody@gmail.com
-################################################################
+#################################################################
+HOSTNAME='ec2-52-63-456-123.ap-southeast-2.compute.amazonaws.com'
+COUNTRY='AU'
+STATE='Australian Capital Territory'
+CITY='Canberra'
+COMPANY='MyCompany'
+DIVISON='IT'
+EMAIL='somebody@gmail.com'
+#################################################################
 
 set -e 
 set -x
