@@ -17,12 +17,12 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * change size to preferred (I use 100GB for our large enterprise builds)
 * select **Add Tags**
 * set value to *Jenkins*
-* select *Configure Security Group*
+* select **Configure Security Group**
 * add rule *HTTPS*
 * select **Review and launch**
 * select a key pair
 * select **Launch Instance**
-* In EC2 go to instances, once instance running then select instance and click *Connect*
+* In EC2 go to instances, once instance running then select instance and click **Connect**
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
 ##Instructions
