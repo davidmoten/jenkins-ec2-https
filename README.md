@@ -6,10 +6,21 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 ##Create an EC2 instance
 * open AWS Console in browser
 * go to EC2
-* Launch Instance - select Ubuntu 16.04 server image
-* Security group - allow inbound on SSH 22 and HTTPS 443
-* 8gb is fine for small Jenkins builds (I went for 100GB to handle our enterprise builds)
-* In EC2 go to instances, once instance running then select Connect
+* select **Launch Instance** - select **Ubuntu Server 16.04 LTS**
+* select **t2.micro**
+* select **Configure Instance Details**
+* tick **Enable termination protection**
+* select **Add Storage**
+* change size to preferred (I use 100GB for our large enterprise builds)
+* select **Add Tags**
+* set value to *Jenkins*
+* select *Configure Security Group*
+* add rule *HTTPS*
+* select **Review and launch**
+* select a key pair
+* select **Launch Instance**
+
+* In EC2 go to instances, once instance running then select instance and click Connect
 * copy ssh command to terminal and connect
 
 Sources:
