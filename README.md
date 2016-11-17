@@ -45,6 +45,7 @@ sudo apt-get install apache2 -y
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo a2enmod headers
+sudo a2enmod ssl
 
 # configure apache for ssl proxying
 sudo tee /etc/apache2/sites-enabled/ssl.conf <<EOF
