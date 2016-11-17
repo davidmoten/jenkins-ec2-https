@@ -10,7 +10,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * go to EC2
 * select **Launch Instance**
 * select **Ubuntu Server 16.04 LTS**
-* select **t2.micro**
+* select **t2.micro** (I use **t2.small** to get more memory for my greedy build)
 * select **Configure Instance Details**
 * tick **Enable termination protection**
 * select **Add Storage**
