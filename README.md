@@ -105,6 +105,8 @@ rm server-config
 
 sudo cp cert.pem /etc/ssl/certs/my-cert.pem
 sudo cp key.pem /etc/ssl/private/my-key.pem
+
+sudo service apache2 restart
 ZZZZ
 
 chmod +x create-certs.sh
@@ -112,5 +114,4 @@ chmod +x create-certs.sh
 Now edit create-certs.sh and update the CA_PASSWORD and certificate fields (especially the CN field which is the hostname). Then run the create-certs.sh script:
 ```bash
 ./create-certs.sh
-sudo service apache2 restart
 ```
