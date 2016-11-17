@@ -128,7 +128,11 @@ set +x
 echo '****************************************'
 echo '* Now you should edit create-certs.sh '
 echo '* to update the CA_PASSWORD and your   '
-echo '* certificate fields...'
+echo '* certificate fields. Then run '
+echo '    ./create-certs.sh
+echo '* the last line of output from that script'
+echo '* is the password to be entered first time '
+echo '* you go to the jenkins url in browser'
 echo '****************************************'
 ```
 Now edit create-certs.sh and update the CA_PASSWORD and certificate fields (especially the CN field which is the hostname). Then run the create-certs.sh script:
