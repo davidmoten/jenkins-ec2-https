@@ -30,12 +30,13 @@ Sources:
 
 ##Instructions
 * copy the contents of [setup.sh](setup.sh) to a file `setup.sh` in the `/home/ubuntu` directory (that's where you are when you login to the instance)
-* Run 
+* Then 
 ```bash
+chmod +x setup.sh
 ./setup.sh
 ```
 * Optionally edit `create-certs.sh` and update CA_PASSWORD and certificate fields (especially the CN field which is the hostname).
-* Run 
+* Then
 ```bash
 ./create-certs.sh
 ```
