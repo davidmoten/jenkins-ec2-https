@@ -26,11 +26,6 @@ I've tested this process and it took exactly *5 minutes* to get to the login scr
 * In EC2 go to instances, once instance running then select instance and click Connect
 * copy ssh command to terminal and connect
 
-Sources:
-* https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
-* https://github.com/hughperkins/howto-jenkins-ssl
-* https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
-
 ##Instructions
 * copy the contents of [setup.sh](setup.sh) to a file `setup.sh` in the `/home/ubuntu` directory (that's where you are when you login to the instance)
 * Then 
@@ -44,3 +39,8 @@ chmod +x setup.sh
 ./create-certs.sh
 ```
 Now go to https://your_instance in the browser and paste in the last line output by the `create-certs.sh` script into the administration password in the browser. If the browser times out go to the same url again (make sure it's https). That's it!
+
+##Sources
+* https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+* https://github.com/hughperkins/howto-jenkins-ssl
+* https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
