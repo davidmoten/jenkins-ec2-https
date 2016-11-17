@@ -8,7 +8,7 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 * go to EC2
 * Launch Instance - select Ubuntu 16.04 server image
 * Security group - allow inbound on SSH 22 and HTTPS 443
-* 8gb is fine for OS, add EBS volume if you need it (I used 100GB)
+* 8gb is fine for small Jenkins builds (I went for 100GB to handle our enterprise builds)
 * In EC2 go to instances, once instance running then select Connect
 * copy ssh command to terminal and connect
 
