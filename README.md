@@ -12,7 +12,11 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 * In EC2 go to instances, once instance running then select Connect
 * copy ssh command to terminal and connect
 
-from https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+Sources:
+* https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+* https://github.com/hughperkins/howto-jenkins-ssl
+* https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
+
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
