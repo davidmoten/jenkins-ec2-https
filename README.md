@@ -25,7 +25,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * In EC2 go to instances, once instance running then select instance and click **Connect**
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
-##Instructions
+##Deploy jenkins
 Login to the instance using the ssh command mentioned above. Then run:
 ```bash
 wget --no-cache https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup.sh && chmod +x setup.sh
