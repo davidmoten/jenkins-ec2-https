@@ -8,7 +8,8 @@ I've tested this process and it took exactly *5 minutes* to get to the login scr
 ##Create an EC2 instance
 * open AWS Console in browser
 * go to EC2
-* select **Launch Instance** - select **Ubuntu Server 16.04 LTS**
+* select **Launch Instance**
+* select **Ubuntu Server 16.04 LTS**
 * select **t2.micro**
 * select **Configure Instance Details**
 * tick **Enable termination protection**
