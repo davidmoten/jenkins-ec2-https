@@ -121,6 +121,7 @@ sudo cp cert.pem /etc/ssl/certs/my-cert.pem
 sudo cp key.pem /etc/ssl/private/my-key.pem
 
 sudo service apache2 restart
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ZZZZ
 
 chmod +x create-certs.sh
