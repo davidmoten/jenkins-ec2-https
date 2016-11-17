@@ -30,7 +30,7 @@ sudo a2enmod headers
 sudo mv /etc/apache2/sites-enabled/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf.bak
 
 # configure apache for ssl proxying
-sudo cat <<EOT >/etc/apache2/sites-enabled/ssl.conf
+sudo cat <<EOF >/etc/apache2/sites-enabled/ssl.conf
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule proxy_module modules/mod_proxy.so
 #SSLVerifyClient require
@@ -65,12 +65,45 @@ Listen 443
   ErrorLog /var/log/apache2/ssl-error_log
   TransferLog /var/log/apache2/ssl-access_log
 </VirtualHost>
-EOT
+EOF
 
 ## restart apache
 sudo service apache2 restart
 
 ## print out jenkins password for initial admin login
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+The script above uses the default ssl certificates for apache2. To make a self-signed certificate that at least matches the desired host name do the following:
+
+```bash
+sudo su - jenkins
+# we are now in /var/lib/jenkins
+
+# create server certificates (public and private)
+tee server-config <<EOF
+# OpenSSL configuration file.
+[ req ]
+prompt = no
+distinguished_name			= req_distinguished_name
+ 
+[ req_distinguished_name ]
+C=AU
+ST=Australian Capital Territory
+L=Canberra
+CN=ec2-52-63-123-456.ap-southeast-2.compute.amazonaws.com
+O=Some Company
+OU=Some Division
+emailAddress=myemail@gmail.com
+EOF
+
+CA_PASSWORD=blahblah
+openssl genrsa -out key.pem  2048 # creates key.pem
+openssl req -sha256 -new -key key.pem -out csr.pem -config server-config
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem -passin "pass:$CA_PASSWORD"
+rm csr.pem
+rm server-config
+
+#logout of jenkins user
+exit
 ```
 
