@@ -28,7 +28,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 ##Instructions
 Login to the instance using the ssh command mentioned above. Then run:
 ```bash
-wget --no-cache https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup.sh
+wget --no-cache https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup.sh && chmod +x setup.sh
 ```
 Now edit the file `setup.sh` and edit the top block of parameters with the values you want to see in the generated certificate for jenkins website.
 ```bash
