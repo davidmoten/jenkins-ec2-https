@@ -71,7 +71,7 @@ sudo service apache2 restart
 ## print out jenkins password for initial admin login
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-The script above uses the default ssl certificates for apache2. To make a self-signed certificate that at least matches the desired host name do the following:
+The script above uses the default ssl certificates for apache2 (and these will work but in the browser you will be warned about the certificates being insecure). To make a self-signed certificate that at least matches the desired host name do the following:
 
 ```bash
 cd ~
