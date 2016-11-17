@@ -76,8 +76,8 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 The script above uses the default ssl certificates for apache2. To make a self-signed certificate that at least matches the desired host name do the following:
 
 ```bash
-sudo su - jenkins
-# we are now in /var/lib/jenkins
+cd ~
+# we are now in /home/ubuntu
 
 #set this password for your needs
 CA_PASSWORD=blahblah
@@ -105,7 +105,14 @@ openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem -passin 
 rm csr.pem
 rm server-config
 
-#logout of jenkins user
-exit
+sudo cp cert.pem /etc/ssl/certs/my-cert.pem
+sudo cp key.pem /etc/ssl/private/my-key.pem
+```
+
+Now edit the location of the keys in `/etc/apache2/sites-enabled/ssl.conf` so that those lines look like:
+
+```
+  SSLCertificateFile	/etc/ssl/certs/my-cert.pem
+  SSLCertificateKeyFile /etc/ssl/private/my-key.pem
 ```
 
