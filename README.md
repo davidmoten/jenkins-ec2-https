@@ -26,9 +26,9 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
 ##Instructions
-* copy the contents of [setup.sh](setup.sh) to a file `setup.sh` in the `/home/ubuntu` directory (that's where you are when you login to the instance)
-* Then 
+Login to the instance using the ssh command mentioned above. Then run:
 ```bash
+wget https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup.sh
 chmod +x setup.sh
 ./setup.sh
 ```
