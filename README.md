@@ -45,8 +45,8 @@ Listen 443
   </Proxy>
   
   SSLEngine             on
-  SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
-  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+  SSLCertificateFile	/etc/ssl/certs/my-cert.pem
+  SSLCertificateKeyFile /etc/ssl/private/my-key.pem
   
   # this option is mandatory to force apache to forward the client cert data to tomcat
   SSLOptions +ExportCertData
@@ -65,15 +65,15 @@ Listen 443
 </VirtualHost>
 EOF
 
-## restart apache
-sudo service apache2 restart
-
 ## print out jenkins password for initial admin login
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-```
-The script above uses the default ssl certificates for apache2 (and these will work but in the browser you will be warned about the certificates being insecure). To make a self-signed certificate that at least matches the desired host name do the following:
 
-```bash
+## The script above uses the default ssl certificates for apache2
+## (and these will work but in the browser you will be warned about
+## the certificates being insecure). To make a self-signed certificate
+## that at least matches the desired host name:
+
+tee create-certs.sh <<ZZZZ
 cd ~
 # we are now in /home/ubuntu
 
@@ -105,15 +105,12 @@ rm server-config
 
 sudo cp cert.pem /etc/ssl/certs/my-cert.pem
 sudo cp key.pem /etc/ssl/private/my-key.pem
-```
+ZZZZ
 
-Now edit the location of the keys in `/etc/apache2/sites-enabled/ssl.conf` so that those lines look like:
-
+chmod +x create-certs.sh
 ```
-  SSLCertificateFile	/etc/ssl/certs/my-cert.pem
-  SSLCertificateKeyFile /etc/ssl/private/my-key.pem
-```
-Restart apache2:
+Now edit create-certs.sh and update the CA_PASSWORD and certificate fields (especially the CN field which is the hostname). Then run the create-certs.sh script:
 ```bash
+./create-certs.sh
 sudo service apache2 restart
 ```
