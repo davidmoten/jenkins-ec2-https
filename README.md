@@ -23,8 +23,8 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * select a key pair
 * select **Launch Instance**
 
-* In EC2 go to instances, once instance running then select instance and click Connect
-* copy ssh command to terminal and connect
+* In EC2 go to instances, once instance running then select instance and click *Connect*
+* copy ssh command in the example to terminal and run (you'll need your key present)
 
 ##Instructions
 * copy the contents of [setup.sh](setup.sh) to a file `setup.sh` in the `/home/ubuntu` directory (that's where you are when you login to the instance)
