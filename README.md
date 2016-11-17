@@ -47,7 +47,7 @@ sudo a2enmod proxy_http
 sudo a2enmod headers
 
 # configure apache for ssl proxying
-sudo cat <<EOF >/etc/apache2/sites-enabled/ssl.conf
+sudo tee /etc/apache2/sites-enabled/ssl.conf <<EOF
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule proxy_module modules/mod_proxy.so
 Listen 443
@@ -123,6 +123,12 @@ sudo service apache2 restart
 ZZZZ
 
 chmod +x create-certs.sh
+
+echo #######################################
+echo # Now you should edit create-certs.sh 
+echo # to update the CA_PASSWORD and your   
+echo # certificate fields...
+echo #######################################
 ```
 Now edit create-certs.sh and update the CA_PASSWORD and certificate fields (especially the CN field which is the hostname). Then run the create-certs.sh script:
 ```bash
