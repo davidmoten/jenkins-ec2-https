@@ -11,9 +11,21 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 * In EC2 go to instances, once instance running then select Connect
 * copy ssh command to terminal and connect
 
+from https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
+
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
 sudo apt-get install jenkins
+
+sudo apt-get install apache2
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod headers
+
+sudo mv /etc/apache2/sites-enabled/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf.bak
 ```
 
