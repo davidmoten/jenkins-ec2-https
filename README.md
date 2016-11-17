@@ -29,7 +29,7 @@ sudo a2enmod headers
 
 sudo mv /etc/apache2/sites-enabled/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf.bak
 
-#
+# configure apache for ssl proxying
 sudo cat <<EOT >/etc/apache2/sites-enabled/ssl.conf
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule proxy_module modules/mod_proxy.so
