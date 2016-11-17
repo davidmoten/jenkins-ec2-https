@@ -6,8 +6,8 @@ HOSTNAME='ec2-52-63-456-123.ap-southeast-2.compute.amazonaws.com'
 COUNTRY='AU'
 STATE='Australian Capital Territory'
 CITY='Canberra'
-COMPANY='MyCompany'
-DIVISON='IT'
+ORG='MyCompany'
+ORG_UNIT='IT'
 EMAIL='somebody@gmail.com'
 #################################################################
 
@@ -89,16 +89,16 @@ C=TheCountry
 ST=TheState
 L=TheCity
 CN=TheHostname
-O=TheCompany
-OU=TheDivision
+O=TheOrganization
+OU=TheOrgUnit
 emailAddress=TheEmail
 EOF
 sed -i -e "s/TheCountry/$COUNTRY/g" server-config
 sed -i -e "s/TheState/$STATE/g" server-config
 sed -i -e "s/TheCity/$CITY/g" server-config
 sed -i -e "s/TheHostname/$HOSTNAME/g" server-config
-sed -i -e "s/TheCompany/$COMPANY/g" server-config
-sed -i -e "s/TheDivision/$DIVISION/g" server-config
+sed -i -e "s/TheOrganization/$ORG/g" server-config
+sed -i -e "s/TheOrgUnit/$ORG_UNIT/g" server-config
 sed -i -e "s/TheEmail/$EMAIL/g" server-config
 
 openssl genrsa -out key.pem  2048 # creates key.pem
