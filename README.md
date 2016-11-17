@@ -32,6 +32,11 @@ wget https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup
 ```
 Now edit the file `setup.sh` and edit the top block of parameters with the values you want to see in the generated certificate for jenkins website.
 ```bash
+# I use vi, you might use nano or anything else you're comfortable with
+vi setup.sh
+```
+Now run setup:
+```bash
 ./setup.sh
 ```
 Now go to https://your_instance in the browser and paste in the last line output by the `setup.sh` script into the administration password in the browser. If the browser times out go to the same url again (make sure it's https). That's it!
