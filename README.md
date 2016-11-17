@@ -40,4 +40,4 @@ chmod +x setup.sh
 ```bash
 ./create-certs.sh
 ```
-Now go to https://your_instance in the browser and paste in the last line output by the `create-certs.sh` script into the administration password in the browser. That's it!
+Now go to https://your_instance in the browser and paste in the last line output by the `create-certs.sh` script into the administration password in the browser. If the browser times out go to the same url again (make sure it's https). That's it!
