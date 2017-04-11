@@ -5,7 +5,7 @@ This task took me three hours reading a lot of web pages and lots of trial and e
 
 I've tested this process and it took exactly *5 minutes* to get to the https login screen of the new jenkins instance. Most of that time is waiting for the scripted installation of components on the AWS instance.
 
-##Create an EC2 instance
+## Create an EC2 instance
 * open AWS Console in browser
 * go to EC2
 * select **Launch Instance**
@@ -25,7 +25,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * In EC2 go to instances, once instance running then select instance and click **Connect**
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
-##Deploy jenkins
+## Deploy jenkins
 Login to the instance using the ssh command mentioned above. Then run:
 ```bash
 wget --no-cache https://raw.githubusercontent.com/davidmoten/jenkins-ec2-https/master/setup.sh && chmod +x setup.sh
@@ -41,7 +41,7 @@ Now run setup:
 ```
 Now go to https://your_instance in the browser and paste in the last line output by the `setup.sh` script into the administration password in the browser. If the browser times out go to the same url again (make sure it's https). That's it!
 
-##Sources
+## Sources
 * https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
 * https://github.com/hughperkins/howto-jenkins-ssl
 * https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
