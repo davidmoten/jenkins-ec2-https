@@ -19,6 +19,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * set value to *Jenkins*
 * select **Configure Security Group**
 * add rule *HTTPS*
+* add rule *Custom TCP Rule* with port range 8080
 * select **Review and launch**
 * select a key pair
 * select **Launch Instance**
