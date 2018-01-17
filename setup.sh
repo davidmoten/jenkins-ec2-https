@@ -116,5 +116,5 @@ echo '**********************************************************'
 echo '** CA password (you probably don'"'"'t need it):'
 echo $CA_PASSWORD
 echo '**********************************************************'
-echo '** Initial administration password to enter into browser:
+echo '** Initial administration password to enter into browser:'
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
