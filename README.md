@@ -16,7 +16,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * select **Add Storage**
 * change size to preferred (I use 100GB for our large enterprise builds)
 * select **Add Tags**
-* set value to *Jenkins*
+* add key=Type, value=Jenkins (optional step)
 * select **Configure Security Group**
 * add rule *HTTPS*
 * select **Review and launch**
