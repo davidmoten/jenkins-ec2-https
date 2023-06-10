@@ -18,7 +18,7 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * go to **Storage**
 * change size to preferred (I use 100GB for our large enterprise builds)
 * go to **Advanced Details**
-* enable **Termination Protection** (because you will have useful job configuration on that instance that you probably don't want to lose)
+* enable **Termination Protection** (because you will have useful job configuration on that instance that you probably don't want to lose by accident)
 * select **Launch**
 * In EC2 go to instances, once instance running then select instance and click **Connect**
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
