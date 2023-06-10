@@ -20,7 +20,10 @@ sudo apt upgrade -y
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]  https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt update
-sudo apt install default-jdk jenkins apache2 -y
+## install java before jenkins because does not declare dependency on java 
+## and will fail dpkg step if not already installed
+sudo apt install default-jdk
+sudo apt install jenkins apache2 -y
 echo starting jenkins
 sudo systemctl start jenkins.service
 sudo a2enmod proxy
