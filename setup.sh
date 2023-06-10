@@ -22,7 +22,7 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]  https://pkg.jenkin
 sudo apt update
 ## install java before jenkins because does not declare dependency on java 
 ## and will fail dpkg step if not already installed
-sudo apt install default-jdk
+sudo apt install default-jdk -y
 sudo apt install jenkins apache2 -y
 echo starting jenkins
 sudo systemctl start jenkins.service
