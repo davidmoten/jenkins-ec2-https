@@ -1,5 +1,5 @@
 # jenkins-ec2-https
-How to setup [Jenkins CI](https://jenkins.io/) on EC2 (Ubuntu 22.04 LTS) with https access.
+How to setup [Jenkins CI](https://jenkins.io/) on EC2 (Ubuntu 22.04 LTS) with https access and self-signed certificates.
 
 This task took me three hours ages ago with Ubuntu 16.04 (and probably still painful with 22.04) by reading a lot of web pages and lots of trial and error. To make your life easier this is what you need to do to setup a Jenkins CI instance using your AWS account.
 
