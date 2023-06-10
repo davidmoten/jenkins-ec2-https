@@ -1,7 +1,7 @@
 # jenkins-ec2-https
-How to setup [Jenkins CI](https://jenkins.io/) on EC2 (Ubuntu 16.04 LTS) with https access.
+How to setup [Jenkins CI](https://jenkins.io/) on EC2 (Ubuntu 22.04 LTS) with https access.
 
-This task took me three hours reading a lot of web pages and lots of trial and error. To make your life easier this is what you need to do to setup a Jenkins CI instance using your AWS account.
+This task took me three hours ages ago with Ubuntu 16.04 (and probably still painful with 22.04) by reading a lot of web pages and lots of trial and error. To make your life easier this is what you need to do to setup a Jenkins CI instance using your AWS account.
 
 I've tested this process and it took exactly *5 minutes* to get to the https login screen of the new jenkins instance. Most of that time is waiting for the scripted installation of components on the AWS instance.
 
@@ -9,19 +9,17 @@ I've tested this process and it took exactly *5 minutes* to get to the https log
 * open AWS Console in browser
 * go to EC2
 * select **Launch Instance**
-* select **Ubuntu Server 16.04 LTS**
+* select **Ubuntu Server 22.04 LTS**
 * select **t2.micro** (I use **t2.small** to get more memory for my greedy build)
-* select **Configure Instance Details**
-* tick **Enable termination protection**
-* select **Add Storage**
+* choose or create a **Key Pair**
+* go to **Network settings - Firewall**
+* allow SSH Traffic
+* allow HTTPS traffic from the internet
+* go to **Storage**
 * change size to preferred (I use 100GB for our large enterprise builds)
-* select **Add Tags**
-* add key=Type, value=Jenkins (optional step)
-* select **Configure Security Group**
-* add rule *HTTPS*
-* select **Review and launch**
-* select a key pair
-* select **Launch Instance**
+* go to **Advanced Details**
+* enable **Termination Protection** (because you will have useful job configuration on that instance that you probably don't want to lose)
+* select **Launch**
 * In EC2 go to instances, once instance running then select instance and click **Connect**
 * copy ssh command in the example to terminal and run (you'll need your referenced key file present in that directory)
 
@@ -45,3 +43,4 @@ Now go to https://your_instance in the browser and paste in the last line output
 * https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
 * https://github.com/hughperkins/howto-jenkins-ssl
 * https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
+* https://www.cherryservers.com/blog/how-to-install-jenkins-on-ubuntu-22-04
