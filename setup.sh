@@ -2,7 +2,7 @@
 #################################################################
 ## Set the values in this section
 #################################################################
-HOSTNAME='ec2-52-63-456-123.ap-southeast-2.compute.amazonaws.com'
+HOSTNAME='ec2-3-26-43-48.ap-southeast-2.compute.amazonaws.com'
 COUNTRY='AU'
 STATE='Australian Capital Territory'
 CITY='Canberra'
@@ -14,13 +14,15 @@ EMAIL='somebody@gmail.com'
 set -e 
 set -x
 
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo apt update
+sudo apt upgrade -y
 
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install default-jdk jenkins apache2 -y
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]  https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install default-jdk jenkins apache2 -y
+echo starting jenkins
+sudo systemctl start jenkins.service
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo a2enmod headers
@@ -30,7 +32,7 @@ sudo a2enmod ssl
 sudo tee /etc/apache2/sites-enabled/ssl.conf <<EOF
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule proxy_module modules/mod_proxy.so
-Listen 443
+# Listen 443
 <VirtualHost *:443>
   <Proxy "*">
     Order deny,allow
@@ -102,13 +104,14 @@ sed -i -e "s/TheEmail/$EMAIL/g" server-config
 openssl genrsa -out key.pem  2048 # creates key.pem
 openssl req -sha256 -new -key key.pem -out csr.pem -config server-config
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem -passin "pass:$CA_PASSWORD"
+
 rm csr.pem
 rm server-config
 
 sudo cp cert.pem /etc/ssl/certs/my-cert.pem
 sudo cp key.pem /etc/ssl/private/my-key.pem
 
-sudo service apache2 restart
+sudo systemctl restart apache2
 set +x
 echo '**********************************************************'
 echo '** CA password (you probably don'"'"'t need it):'
